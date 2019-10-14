@@ -250,9 +250,9 @@ class Neural(object):
                 score_train, score_vali = self.train(X_now_train, X_lag_train, X_now_vali, X_lag_vali, batch_size, n_epochs, learning_rate, pdf)
                 if np.abs(score_train) > numerical_precision:
                     break # that's good, it worked so stop iterating
-                print('WARNING: training failed, training another time')
-            else:
-                 print('WARNING: training failed')
+                    print('WARNING: training failed, training another time')
+                else:
+                    print('WARNING: training failed')
             #--- Calculate the MSM for the neural network just trained
             self.get_msm(pdf = pdf)
             #--- Calculate state statistics for the neural network just trained 

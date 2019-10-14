@@ -21,10 +21,13 @@ print = functools.partial(print, flush=True)
 np.set_printoptions(linewidth = np.inf)
 
 import sys
-sys.path.append("/home/simone/msm_cme_runs")
-sys.path.append("/home/simone/msm_cme_runs/chick")
-sys.path.append("/home/simone/MySoftware")
-sys.path.append("/Users/simone/Desktop/MarkovModels_CME/old_tests")
+#sys.path.append("/home/simone/msm_cme_runs")
+#sys.path.append("/home/simone/msm_cme_runs/chick")
+#sys.path.append("/home/simone/MySoftware")
+#sys.path.append("/Users/simone/Desktop/MarkovModels_CME/old_tests")
+sys.path.append("/home/Marilisa/chick")
+sys.path.append("/home/Marilisa/chick/chick")
+sys.path.append("/home/Marilisa/")
 
 import chick
 
@@ -98,7 +101,7 @@ if os.path.isfile('./{0:s}.pk'.format(prefix)):
 else:
     gnr.run(stride = 0, initial_state = {'A': 0, 'B': 0, 'P_B_A': 0, 'P_A_f': 1, 'P_B_f': 1, 'P_A_B': 0})
     replica = chick.replica.Random(gnr)
-replica.run(1)
+replica.run(1000)
 print('Number of frames: ',replica.n_frames())
 print('Species: ',replica.simulation.species)
 replica.show(pdf)
@@ -137,7 +140,7 @@ for i_outputs, n_outputs in enumerate(N_OUTPUTS):
     print('n_inputs = {0:d}'.format(n_inputs))
     print('n_outputs = {0:d}'.format(n_outputs))
     print('nodes = ',nodes)
-    exit()
+    #exit()
     #--- Go !
     N = chick.sorter.Neural(replica, nodes, n_outputs, lags, epsilon = 1e-4)
     scores_train[i_outputs,:], scores_vali[i_outputs,:] = N.fit(n_run_training = n_run_training, train_ratio = 0.9, batch_size = batch_size, n_epochs = n_epochs, learning_rate = learning_rate, pdf = pdf)
